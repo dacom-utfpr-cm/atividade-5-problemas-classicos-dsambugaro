@@ -25,7 +25,6 @@ class Philosopher implements Runnable {
                 if (hungry >= maxHungry) {
                     System.out.println("[" + Thread.currentThread().getName() + "] Is hungry...");
                     Thread.sleep(1000);
-                    eat();
                 } else {
                     System.out.println("[" + Thread.currentThread().getName() + "] Is thinking...");
                     Thread.sleep(3000);
@@ -34,6 +33,12 @@ class Philosopher implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            
+            // Constantemente alivia a fome do filósofo, caso ocorra de
+            // apenas um filósofo ficar pegando e soltando os talheres para comer,
+            // os filósofos ao seu lado ficarão famintos e ganharão
+            // prioridade sobre ele para pegar os talheres
+            eat();
         }
     }
 
